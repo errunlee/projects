@@ -1,3 +1,3 @@
-Menu made on React
+Menu made on React.
 
 menubyarun.vercel.app
