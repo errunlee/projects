@@ -16,7 +16,6 @@ export default function Tabs() {
     response = await res.json();
     setData(response)
     setExp(response[0])
-    console.log(data)
   }
   useEffect(() => {
     fetchData();
