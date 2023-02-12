@@ -1,0 +1,80 @@
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  background:#f1f5f8;
+}
+.hr{
+  width:80px;
+  height:0.3rem;
+  background:#7878dd;
+}
+.box{
+  display:grid;
+  grid-template-columns:20% 80%;
+  padding:10px;
+  font-family:sans-serif;
+}
+.title{
+  background:none;
+  border:none;
+  font-size:1.3rem;
+  margin:0 9px 9px;;
+}
+.title:hover{
+   border-left:2px solid #457fb5;
+  color:#2caeba;
+  transition:0.4s color;
+}
+.current{
+  border-left:2px solid #457fb5;
+  color:#2caeba;
+}
+.infos p:nth-child(2){
+background:#dae2ec;
+  padding:10px;
+  margin:8px 0;
+  display:inline;
+  font-weight:bold;
+  color:#617d98;
+  letter-spacing:3px;
+}
+.infos p:nth-child(1){
+font-size:1.5rem;
+  letter-spacing:2px;
+  font-weight:bold;
+}
+.infos p:nth-child(3){
+  color:#617d98;
+  font-size:1.2rem;
+}
+.roles li{
+  margin-right:6px;
+}
+.roles p{
+  color:#102a42;
+  letter-spacing:0.5px;
+}
+
+@media only screen and (max-width: 720px) {
+  /* CSS rules for mobile devices go here */
+  .box{
+    grid-template-columns:1fr;
+    place-items:center;
+  }
+  .current{
+  border-bottom:2px solid #457fb5;
+  border-left:0;
+  }
+.title:hover{
+border-bottom:2px solid #457fb5;
+  color:#2caeba;
+  transition:0.4s color;
+  border-left:0;
+}
+  .infos p:nth-child(1){
+font-size:1.5rem;
+  letter-spacing:1px;
+}
+}
