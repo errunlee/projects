@@ -10,6 +10,8 @@ body{
   width:70%;
   margin:auto;
   padding:13px;
+  min-height: 500px;
+  overflow: hidden;
 }
 .box img{
   height:150px;
@@ -40,4 +42,20 @@ color:#617d98;
   position: absolute;
   top:50%;
   right:0;
+}
+.box-item{
+  position: absolute;
+  transition: 0.5s all;
+  opacity: 0;
+}
+.active-item{
+  transform: translateX(0);
+  opacity: 1;
+}
+.previous-item{
+  transform: translateX(-100%);
+}
+.next-item{
+  transform: translateX(100%);
+  
 }

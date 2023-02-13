@@ -10,6 +10,7 @@ function App() {
   <div className="box position-relative">
     <Slider/>
   </div>
+  
  </div>
   )
 }
