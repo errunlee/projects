@@ -59,3 +59,8 @@ color:#617d98;
   transform: translateX(100%);
   
 }
+@media only screen and (max-width: 720px) {
+ .box{
+   width:100%;
+  }
+}
