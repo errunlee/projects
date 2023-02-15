@@ -1,0 +1,23 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+body{
+  background: #f1f5f8;
+}
+header p{
+  font-size: 1.5rem;
+    font-family: ui-sans-serif,sans-serif;
+    font-weight: bolder;
+}
+header input,button{
+  height:2.3rem;
+}
+.color-box{
+  height:9rem;
+}
+.wrapper section{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
