@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #f1f5f8;
+  font-family: monospace;
+}
+.info input{
+  width:3.5rem;
+  height:2rem;
+  font-weight: bold;
+  font-size:1.2rem;
+}
+.info .btn{
+  height:2rem;
+  padding: 0 13p;
+  letter-spacing: 1px;
+}
