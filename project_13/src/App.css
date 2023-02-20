@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: url('./Components/images/hero.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+nav ul li{
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.hero-container .left h1{
+    font-size:5rem;
+}
+.hero-container .left p{
+    color:rgb(7, 20, 31);
+    font-size:1.1rem
+}
+.submenu-container{
+    background:white;
+}
