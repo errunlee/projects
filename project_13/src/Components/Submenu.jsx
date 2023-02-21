@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { AppContext } from './Context'
 import data from './data'
 import {FaCreditCard} from 'react-icons/fa'
 function Submenu() {
     const {value}=useContext(AppContext);
     const items=data[value].links;
-    console.log(items)
+ 
   return (
-    <div className='text-capitalize submenu-container d-flex p-5'>
+    <div  className='text-capitalize submenu-container d-flex p-5'>
        {items.map((submenu,index)=>{
         return (
             <div className='mx-3' key={index}>

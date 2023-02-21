@@ -24,3 +24,6 @@ nav ul li{
 .submenu-container{
     background:white;
 }
+.sub{
+    transition: 1s all ease;
+}

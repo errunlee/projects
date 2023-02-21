@@ -2,7 +2,7 @@ import React from 'react'
 import Phone from './images/phone.svg'
 function Hero() {
   return (
-    <div className='hero-container row justify-content-between my-3'>
+    <div className='hero-container row justify-content-between my-3  position-relative'>
         <div className="left col-7 my-5">
         <h1>Payments infrastructure
 for the internet</h1>
