@@ -24,6 +24,25 @@ nav ul li{
 .submenu-container{
     background:white;
 }
+.links{
+    cursor:pointer;
+}
 .sub{
     transition: 1s all ease;
+    z-index:2;
+    opacity: 1;
 }
+.sub::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: calc(50% - 20px);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white; /* change the color to the desired one */
+  }
+  .hidden{
+    opacity: 0;
+  }

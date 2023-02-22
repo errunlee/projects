@@ -5,25 +5,25 @@ import Submenu from './Submenu'
 import { AppContext } from './Context'
 
 function Navbar() {
-    const {showSubMenu,handleHover,handleLeave,position,value}=useContext(AppContext)
+    const {showSubMenu,setShowSubMenu,handleHover,handleLeave,position,value}=useContext(AppContext)
     const sumenuRef=useRef(null)
     useEffect(()=>{
-    sumenuRef.current.style.left=position+'px'
-    console.log(sumenuRef.current)
+    const divWidth=sumenuRef.current.getBoundingClientRect().width;
+    sumenuRef.current.style.left=(position-(divWidth/2))+'px'
     },[value])
   return (
-    <div className='text-capitalize  position-relative'>
+    <div className='text-capitalize  '>
       <nav className='d-flex justify-content-around align-items-center my-3'>
         <div className="logo"><img src={logo}/></div>
         <ul className='d-flex align-items-center m-0' >
             {data.map((item,index)=>{
-                return <li onMouseEnter={(e)=>{handleHover(index,e)}} onMouseLeave={()=>{handleLeave(index)}} className='mx-4 text-light' key={index}>{item.page}</li>
+                return <li onMouseEnter={(e)=>{handleHover(index,e)}} onMouseLeave={(e)=>{handleLeave(index,e)}} className='mx-4 text-light links' key={index}>{item.page}</li>
             })}
         </ul>
         <button style={{height:'35px',letterSpacing:'1px'}} className='btn btn-dark py-0'>Sign Up</button>
       </nav>
-      <div ref={sumenuRef} className="sub shadow-lg position-absolute">
-      {showSubMenu && <Submenu/>}
+      <div ref={sumenuRef} onMouseEnter={()=>setShowSubMenu(true)} onMouseLeave={()=>setShowSubMenu(false)} className={`sub shadow-lg position-absolute ${showSubMenu?'':'hidden'}`}>
+      { <Submenu/>}
       </div>
   
 

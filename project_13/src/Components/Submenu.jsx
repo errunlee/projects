@@ -4,8 +4,7 @@ import data from './data'
 import {FaCreditCard} from 'react-icons/fa'
 function Submenu() {
     const {value}=useContext(AppContext);
-    const items=data[value].links;
- 
+    const items=data[value || 0].links;
   return (
     <div  className='text-capitalize submenu-container d-flex p-5'>
        {items.map((submenu,index)=>{

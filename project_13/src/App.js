@@ -8,7 +8,7 @@ function App() {
    <>
    <AppProvider>
    <Navbar/>
-   <div className="container">
+   <div className="container position-relative">
    <Hero/>
    </div>
    </AppProvider>

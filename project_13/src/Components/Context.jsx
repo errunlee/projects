@@ -7,16 +7,14 @@ const AppProvider=({children})=>{
     const handleHover=(tobeVal,event)=>{
         setShowSubMenu(true);
         setValue(tobeVal)
-        console.log(event.target.getBoundingClientRect())
         const pos=(event.target.getBoundingClientRect().left+event.target.getBoundingClientRect().right)/2
-        console.log(pos)
         setPosition(pos)
     }
-    const handleLeave=()=>{
-        setShowSubMenu(false);
+    const handleLeave=(tobeVal,event)=>{
+            setShowSubMenu(false);
     }
     return(
-        <AppContext.Provider value={{showSubMenu,handleHover,handleLeave,value,position}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{showSubMenu,handleHover,handleLeave,value,position,setShowSubMenu}}>{children}</AppContext.Provider>
     )
 }
 export {AppContext,AppProvider};
