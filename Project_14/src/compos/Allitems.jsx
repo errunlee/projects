@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import CartItem from './CartItem'
 import { Appcontext } from '../context/Context'
 function Allitems() {
-    const {data}=useContext(Appcontext)
+    const {data,totalAmount}=useContext(Appcontext)
     console.log(data)
   return (
     <>
@@ -18,7 +18,7 @@ function Allitems() {
       <hr/>
       <div className="total d-flex justify-content-between">
         <h3 className=''>Total</h3>
-        <h4>$2222</h4>
+        <h4>${totalAmount}</h4>
       </div>
     </div>
     </>
