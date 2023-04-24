@@ -1,6 +1,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
   body{
   background:#f1f5f8;
+  letter-spacing: 1.3px;
   font-family: 'Roboto', sans-serif;
 }
 .login-img{
@@ -17,4 +18,33 @@
 .homepage-container button:hover {
 background-color: #9cd9df;
 color:black;
+}
+/* info section */
+.box .logo svg{
+height:40px;
+width:40px;
+
+}
+.main-box{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+/* user  section */
+.user-section{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+.description{
+  height:40px;
+  top:-40px;
+  left:0;
+}
+.followers-box{
+  padding:0 0 0 1rem;
+  overflow-y:scroll;
+}
+.follow-btn button:hover{
+  background:#4c9edd;
+  color:white !important;
+  transition: 0.5s all;
 }
