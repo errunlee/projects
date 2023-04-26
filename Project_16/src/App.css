@@ -19,6 +19,12 @@
 background-color: #9cd9df;
 color:black;
 }
+/* loader */
+.loader img{
+  height:150px;
+  width:150px;
+}
+
 /* info section */
 .box .logo svg{
 height:40px;
@@ -47,4 +53,27 @@ width:40px;
   background:#4c9edd;
   color:white !important;
   transition: 0.5s all;
+}
+/* search box */
+.search-box{
+  display:grid;
+  grid-template-columns: auto max-content;
+}
+.search-box input{
+  width:95%;
+  border:none;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+.search-box input:focus{
+  outline:2px solid rgb(240, 215, 240);
+  border-radius: 3px;
+}
+.form-container{
+  display: grid;
+  grid-template-columns: auto max-content;
+  align-items: center;
+}
+.form-container .requests{
+  color:#617d98;
 }
