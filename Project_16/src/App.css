@@ -77,3 +77,24 @@ width:40px;
 .form-container .requests{
   color:#617d98;
 }
+
+/* mqeries */
+@media only screen  and (max-width: 1023px) {
+.form-container{
+grid-template-columns: 1fr;
+grid-template-rows: auto auto;
+}
+.main-box{
+  grid-template-columns: 2fr 2fr;
+}
+.main-box .box{
+  margin:8px 0;
+}
+.user-section{
+  grid-template-columns: 1fr;
+}
+.user-section .section{
+  margin:2rem 0;
+}
+}
+
