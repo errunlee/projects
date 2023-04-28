@@ -141,4 +141,14 @@ margin:1rem 0;
   .main-box{
     grid-template-columns: 1fr;
   }
+  .nav-wrapper h4{
+    font-size:0.9rem;
+  }
+  .nav-wrapper img{
+    height:30px;
+    width:30px;
+  }
+  .nav-wrapper p{
+    font-size:0.8rem;
+  }
 }
