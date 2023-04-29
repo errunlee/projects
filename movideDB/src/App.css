@@ -1,0 +1,27 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+body{
+  font-family: sans-serif;
+ background:#1a1a1a;
+  color:white;
+}
+/* navbar */
+.navbar{
+  background:#232323
+}
+nav ul li{
+  margin:0 1rem;
+}
+/* single movie components */
+.singleMovie{
+  display: inline-grid;
+  width:10%;
+  background:#1d1b1b;
+  height:200px;
+  background-size: contain;
+}
+
+/* suggestions */
