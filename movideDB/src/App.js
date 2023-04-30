@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
       <Route exact path='/' element={<Homepage/>}/>
-      <Route exact path='/movie/:id' element={<MovieDetail/>}/>
+      <Route exact path='/:id' element={<MovieDetail/>}/>
       </Routes>
     </Router>
     </>

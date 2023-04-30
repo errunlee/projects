@@ -12,10 +12,17 @@ const MovieProvider=({children})=>{
         setList(data)
 
         }
-        const popularUrl='https://api.themoviedb.org/3/movie/popular?api_key=c749165fc96671c286d19d7f046e41e5'
+        //popular movies
+        const popularUrl='https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c749165fc96671c286d19d7f046e41e5'
+       
         useEffect(()=>{
         fetchMovies(popularUrl)
+
         },[])
+        //
+
+        //suggestions
+       
    return  <MovieContext.Provider value={{fetchMovies,list}}>{children}</MovieContext.Provider>
 }
 

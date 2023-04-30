@@ -6,8 +6,11 @@ function Homepage() {
   return (
     <div>
       <Navbar/>
+      <div className="container">
       <Suggestions/>
     <Movies/>
+      </div>
+     
     </div>
   )
 }

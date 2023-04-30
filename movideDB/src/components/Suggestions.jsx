@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SingleMovie from './SingleMovie'
-
 function Suggestions() {
-    const suggestUrl='https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c749165fc96671c286d19d7f046e41e5'
+    const suggestUrl='https://api.themoviedb.org/3/discover/movie?api_key=c749165fc96671c286d19d7f046e41e5&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1'
     const [suggest,setSuggest]=useState('')
     const request=async()=>{
         const res=await fetch(suggestUrl)
@@ -13,9 +12,9 @@ function Suggestions() {
         request();
     },[])
   return (
-    <div>
-      <span class="badge bg-info p-3">Discover</span>
-      <div className="suggestions d-flex justify-content-center">
+    <div className='my-2'>
+      <span class="badge bg-info p-2">Discover</span>
+      <div className="suggestions movie-wrapper">
       {suggest.length>0 &&
         suggest.map((movie)=>{
             return <SingleMovie key={movie.id} movie={movie}/>
