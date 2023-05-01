@@ -81,6 +81,20 @@ column-gap: 1rem;
 .movie-detail .poster img{
   height:250px;
 }
+.movieInfos p {
+font-weight:bolder;
+margin:0;
+}
+.movieInfos span{
+  color:violet;
+  font-size: 0.9rem;
+  font-weight:lighter;
+}
+.movie-info-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5rem;
+}
 /*  */
 @media only screen and (max-width: 1020px) {
   .movie-wrapper{

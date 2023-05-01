@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { MovieContext } from '../context'
 import SingleMovie from './SingleMovie'
+import Loading from './Loader'
 function Movies() {
-    const {fetchMovies,list}=useContext(MovieContext)
+    const {loading,list}=useContext(MovieContext)    
     
-    if(!list){
-        return;
+    if(loading){
+        return <Loading/>
     }
  return (
     <div>

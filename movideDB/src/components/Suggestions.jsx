@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SingleMovie from './SingleMovie'
-function Suggestions() {
-    const suggestUrl='https://api.themoviedb.org/3/discover/movie?api_key=c749165fc96671c286d19d7f046e41e5&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1'
+import Loading from './Loader'
+import { MovieContext } from '../context'
+function Suggestions({suggestUrl,id}) {
+  const {loading1,setLoading1}=useContext(MovieContext)
     const [suggest,setSuggest]=useState('')
     const request=async()=>{
+      setLoading1(true)
         const res=await fetch(suggestUrl)
         const data=await res.json();
         setSuggest(data.results.slice(0,8))
+        setLoading1(false)
     }
     useEffect(()=>{
         request();
-    },[])
+    },[id])
   return (
     <div className='my-2'>
-      <span class="badge bg-info p-2">Discover</span>
       <div className="suggestions movie-wrapper">
       {suggest.length>0 &&
         suggest.map((movie)=>{
