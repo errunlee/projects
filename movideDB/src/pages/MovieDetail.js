@@ -8,13 +8,12 @@ import Cast from '../components/Cast';
 import Suggestions from '../components/Suggestions';
 import Loading from '../components/Loader';
 function MovieDetail() {
-  const {loading,setLoading,loading1,setLoading1,showLoader}=useContext(MovieContext)
+  const {loading,setLoading,request}=useContext(MovieContext)
   const { id } = useParams();
   const [movie, setMovie] = useState('')
   const [cast, setCast] = useState('')
   const detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=c749165fc96671c286d19d7f046e41e5`
   const getData = async () => {
-    setLoading(true)
     const res = await fetch(detailUrl);
     const data = await res.json();
     setMovie(data)
@@ -25,20 +24,30 @@ function MovieDetail() {
     const data=await res.json();
     setCast(data.cast.slice(0,5))
   }
+ const recUrl=`https://api.themoviedb.org/3/movie/${id}/similar?api_key=c749165fc96671c286d19d7f046e41e5`
+
   useEffect(() => {
-    getData();
-    getCast();
-  }, [id])
+    setLoading(true)
+    Promise.all([getData(), request(recUrl),getCast()]).then(() => {
+      setLoading(false);
+    }).catch((error) => {
+      console.error(error);
+    });
+  }, [id]);
   const { budget, genres, original_title, overview, poster_path, release_date, runtime ,production_countries,spoken_languages,status,revenue} = movie
   const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w200${poster_path}` : 'https://picsum.photos/200/300'
- if(showLoader){
-  return <Loading/>
- }
+  if(loading){
+    return (
+      <>
+      <Navbar/>
+      <Loading/>
+      </>
+    )
+  }
   return (
     <div>
       <Navbar />
-      {
-        movie && <div className='movie-detail container  my-3 p-3'>
+      {movie && <div className='movie-detail container  my-3 p-3'>
           <div className="poster">
             <img src={imageUrl} />
           </div>
@@ -74,7 +83,7 @@ function MovieDetail() {
             </div>
             <p className='my-2 fw-lighter text-info font-italic' style={{fontStyle:'italic'}}>{overview}</p>
             <span className='badge bg-info text-white my-2'>Top Cast</span>
-            <Cast cast={cast}/>
+            <Cast cast={cast} setCast={setCast}/>
           </div>
 
         </div>
@@ -84,7 +93,7 @@ function MovieDetail() {
       <span className="bg-secondary text-light recomendation p-2 fw-bolder">
         You might also like
       </span>
-      <Suggestions id={id} suggestUrl={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=c749165fc96671c286d19d7f046e41e5`}/>
+      <Suggestions id={id} />
       </div>
      
     </div>
