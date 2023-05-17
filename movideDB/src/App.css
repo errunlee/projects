@@ -8,12 +8,16 @@ body{
  background:#1a1a1a;
   color:white;
 }
+
 /* navbar */
 .navbar{
   background:#232323
 }
 nav ul li{
   margin:0 1rem;
+}
+.active{
+  border-bottom: 2px solid white !important;
 }
 /* single movie components */
 .view-link{
