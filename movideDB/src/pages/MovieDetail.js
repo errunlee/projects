@@ -7,8 +7,12 @@ import Navbar from '../components/Navbar';
 import Cast from '../components/Cast';
 import Suggestions from '../components/Suggestions';
 import Loading from '../components/Loader';
+import { FaYoutube,FaTimes } from 'react-icons/fa';
+
 function MovieDetail() {
   const {loading,setLoading,request}=useContext(MovieContext)
+  const [trailerUrl, setTrailerUrl] = useState(null);
+
   const { id } = useParams();
   const [movie, setMovie] = useState('')
   const [cast, setCast] = useState('')
@@ -34,6 +38,22 @@ function MovieDetail() {
       console.error(error);
     });
   }, [id]);
+    const url=`https://api.themoviedb.org/3/movie/${id}/videos?api_key=c749165fc96671c286d19d7f046e41e5`
+   const fetchData=async ()=>{
+    const res=await fetch(url)
+    const data=await res.json();
+    setTrailerUrl(data.results[0])
+   }
+  const showModal=()=>{
+    const modal=document.querySelector('#modal')
+   fetchData();
+    modal.showModal();
+  }
+  const handleClose=()=>{
+    const modal=document.querySelector('#modal')
+    setTrailerUrl(null)
+    modal.close();
+  }
   const { budget, genres, original_title, overview, poster_path, release_date, runtime ,production_countries,spoken_languages,status,revenue} = movie
   const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w200${poster_path}` : 'https://picsum.photos/200/300'
   if(loading){
@@ -82,12 +102,21 @@ function MovieDetail() {
               </div>
             </div>
             <p className='my-2 fw-lighter text-info font-italic' style={{fontStyle:'italic'}}>{overview}</p>
+            <div className=''><p onClick={showModal} className='btn btn-secondary d-inline-block shadow-lg p-2'><span className='mx-2 '><FaYoutube size={32} color='red'/></span>Watch trailer</p>
+           
+            </div>
             <span className='badge bg-info text-white my-2'>Top Cast</span>
             <Cast cast={cast} setCast={setCast}/>
           </div>
+          <div className="d-flex">
+          <dialog id='modal'>
+          {trailerUrl?<iframe width="560" height="315" src={`https://www.youtube.com/embed/${trailerUrl.key}`} frameborder="0" allowfullscreen></iframe>:<p>No videos available.:/</p>}
+        <button className='btn btn-secondary' onClick={handleClose}><FaTimes/></button>
+          </dialog>
+          </div>
+        
 
         </div>
-        
       }     
       <div className="container">
       <span className="bg-secondary text-light recomendation p-2 fw-bolder">

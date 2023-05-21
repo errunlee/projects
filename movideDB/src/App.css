@@ -100,6 +100,36 @@ margin:0;
   column-gap: 5rem;
 }
 /*  */
+
+#modal{
+  position:absolute;
+  animation: modal-open 0.3s forwards;
+  top:25%;
+  left:25%;
+  padding:0;
+  min-width:560px ;
+  min-height:315px; 
+}
+#modal button{
+  position: fixed;
+  top:10px;
+  right:10px
+}
+#modal::backdrop{
+  background-color: rgba(0, 0, 0, 0.7);
+
+}
+@keyframes modal-open {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @media only screen and (max-width: 1020px) {
   .movie-wrapper{
     grid-template-columns: repeat(4,1fr);

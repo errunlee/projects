@@ -4,9 +4,9 @@ import { NavLink,Link } from 'react-router-dom'
 function Navbar() {
   return (
     <div className='navbar sticky-top px-5 py-4' >
-      <nav className='d-flex align-items-center justify-content-between w-100'>
+      <nav className='d-flex align-items-center justify-content-between w-100 flex-column flex-lg-row'>
         <Link className='text-decoration-none text-white' to='/'><h3 className='m-0'>LeeCinemas</h3></Link>
-        <ul className='d-flex list-unstyled m-0'>
+        <ul className='d-flex list-unstyled m-0 my-2 my-lg-0'>
 
             <NavLink to='/category/28'activeClassName="active" className='text-decoration-none text-light mx-2' >Action</NavLink>
             <NavLink to='/category/12'activeClassName="active" className='text-decoration-none text-light mx-2' >Adventure</NavLink>
