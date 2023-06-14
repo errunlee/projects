@@ -38,11 +38,19 @@ function MovieDetail() {
       console.error(error);
     });
   }, [id]);
+
+  // trailer endpoint
     const url=`https://api.themoviedb.org/3/movie/${id}/videos?api_key=c749165fc96671c286d19d7f046e41e5`
    const fetchData=async ()=>{
     const res=await fetch(url)
     const data=await res.json();
-    setTrailerUrl(data.results[0])
+    const trailers = data.results.filter(video => video.type === "Trailer");
+    if(trailers.length>0){
+      setTrailerUrl(trailers[0])      
+    }
+    else{
+      setTrailerUrl(data.results[0])
+    }
    }
   const showModal=()=>{
     const modal=document.querySelector('#modal')
@@ -110,7 +118,7 @@ function MovieDetail() {
           </div>
           <div className="d-flex">
           <dialog id='modal'>
-          {trailerUrl?<iframe width="560" height="315" src={`https://www.youtube.com/embed/${trailerUrl.key}`} frameborder="0" allowfullscreen></iframe>:<p>No videos available.:/</p>}
+          {trailerUrl?<iframe className='bg-dark' width="560" height="315" src={`https://www.youtube.com/embed/${trailerUrl.key}?autoplay=1`} frameborder="0" allowfullscreen></iframe>:<p>No videos available.:/</p>}
         <button className='btn btn-secondary' onClick={handleClose}><FaTimes/></button>
           </dialog>
           </div>
