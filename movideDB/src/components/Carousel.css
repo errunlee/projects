@@ -1,0 +1,68 @@
+
+  .box{
+    width:100%;
+    padding:13px;
+    min-height: 450px;
+    overflow: hidden;
+    background: url();
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../assets/caro.jpg);
+    background-size:cover;
+  }
+.box-item img{
+    height:350px;
+    width:250px;
+}
+  .name{
+    color:#ba5d2c;
+    font-weight:bold;
+    font-size:1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .job-title{
+  text-transform: capitalize;
+  }
+  .job-desc{
+  text-align: center;
+  color:#617d98;
+  }
+  .previous{
+    position:absolute;
+    top:50%;
+    left:0;
+  }
+  .next{
+    position: absolute;
+    top:50%;
+    right:0;
+  }
+  .carousel-wrapper{
+    position:relative;
+  }
+  .box-item{
+    position: absolute;
+    transition: 0.5s all;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+  }
+  .active-item{
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .previous-item{
+    transform: translateX(-100%);
+  }
+  .next-item{
+    transform: translateX(100%);
+    
+  }
+  @media only screen and (max-width: 720px) {
+   .box{
+     width:100%;
+    }
+  }
+  
+  .carodiv{
+
+  }
