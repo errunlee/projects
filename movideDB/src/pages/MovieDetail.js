@@ -10,7 +10,7 @@ import Loading from '../components/Loader';
 import { FaYoutube,FaTimes } from 'react-icons/fa';
 
 function MovieDetail() {
-  const {loading,setLoading,request}=useContext(MovieContext)
+  const {loading,setLoading}=useContext(MovieContext)
   const [trailerUrl, setTrailerUrl] = useState(null);
 
   const { id } = useParams();
@@ -28,11 +28,10 @@ function MovieDetail() {
     const data=await res.json();
     setCast(data.cast.slice(0,5))
   }
- const recUrl=`https://api.themoviedb.org/3/movie/${id}/similar?api_key=c749165fc96671c286d19d7f046e41e5`
 
   useEffect(() => {
     setLoading(true)
-    Promise.all([getData(), request(recUrl),getCast()]).then(() => {
+    Promise.all([getData(),getCast()]).then(() => {
       setLoading(false);
     }).catch((error) => {
       console.error(error);
@@ -130,11 +129,12 @@ function MovieDetail() {
       <span className="bg-secondary text-light recomendation p-2 fw-bolder">
         You might also like
       </span>
-      <Suggestions id={id} />
+      <Suggestions id={id} url={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=c749165fc96671c286d19d7f046e41e5`} />
       </div>
      
     </div>
   )
 }
+
 
 export default MovieDetail

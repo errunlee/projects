@@ -11,7 +11,7 @@ body{
 
 /* navbar */
 .navbar{
-  background:#232323
+  background:#232323;
 }
 nav ul li{
   margin:0 1rem;
@@ -71,8 +71,12 @@ nav ul li{
 }
 
 .movie-wrapper{
-  display: grid;
-  grid-template-columns: repeat(8,1fr);
+  
+}
+
+.movie-wrapper a{
+  min-width: 170px;
+  max-width: 170px;
 }
 
 /* movie details components */

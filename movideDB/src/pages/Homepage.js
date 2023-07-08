@@ -1,39 +1,35 @@
 import React, { useContext, useEffect } from 'react'
 import Navbar from '../components/Navbar';
-import Movies from '../components/Movies';
 import Suggestions from '../components/Suggestions';
-import {MovieContext} from '../context.js'
-import Loading from '../components/Loader';
+import HomeCarousel from '../components/HomeCarousel';
+import CaroSkeleton from '../components/CaroSkeleton';
 function Homepage() {
-  const suggestUrl='https://api.themoviedb.org/3/discover/movie?api_key=c749165fc96671c286d19d7f046e41e5&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1'
   const popularUrl='https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c749165fc96671c286d19d7f046e41e5'
-  const {loading,setLoading,fetchMovies,request,isSearch}=useContext(MovieContext)
   
-useEffect(() => {
-  Promise.all([fetchMovies(popularUrl), request(suggestUrl)]).then(() => {
-    setLoading(false);
-  }).catch((error) => {
-    console.error(error);
-  });
-}, []);
-if(loading)
-{
-  return <>
-  <Navbar/>
-  <Loading/>
-  </>
-}  return (
+
+  return (
     <div>
       <Navbar/>
-      
-      <div className="container">
-         <div> <span class="badge bg-info p-2">Discover</span>      
-      <Suggestions  suggestUrl={suggestUrl}/></div>
-      <span class="badge bg-info p-2">Most popular</span>
-     
-       <Movies/>
+      <HomeCarousel/>
+
+      <div className="container mt-3">
+         <div> 
+          <span class="h5 mt-1 mx-2">Top Rated</span>      
+      <Suggestions url='https://api.themoviedb.org/3/movie/top_rated?api_key=c749165fc96671c286d19d7f046e41e5'/> 
       </div>
-     
+      <span class="h5 mt-1">Most popular</span>     
+       <Suggestions url={popularUrl}/>
+       
+      <span class="h5 mt-1">Upcoming releases</span>     
+       <Suggestions url={'https://api.themoviedb.org/3/movie/upcoming?api_key=c749165fc96671c286d19d7f046e41e5'}/>
+      
+      <span class="h5 mt-1">Made in India</span>     
+       <Suggestions url='https://api.themoviedb.org/3/discover/movie?api_key=c749165fc96671c286d19d7f046e41e5&with_original_language=hi'/>
+      <span class="h5 mt-1">US TV Shows</span>     
+       <Suggestions url='https://api.themoviedb.org/3/discover/tv?api_key=c749165fc96671c286d19d7f046e41e5&with_original_language=en&with_origin_country=US'/>
+
+      </div>
+
     </div>
   )
 }
