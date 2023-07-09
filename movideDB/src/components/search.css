@@ -1,0 +1,15 @@
+
+
+.search-input{
+    display:hidden;
+    width:0;
+    transition: 0.5s all;
+}
+.search-input:focus{
+    outline:none;
+}
+.showInput{
+    width:200px;
+    display: initial;
+    padding: 8px;
+}

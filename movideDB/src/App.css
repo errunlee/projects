@@ -1,20 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 *{
   margin:0;
   padding:0;
   box-sizing: border-box;
 }
 body{
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
  background:#1a1a1a;
   color:white;
 }
 
 /* navbar */
 .navbar{
-  background:#232323;
+  background:black;
 }
 nav ul li{
   margin:0 1rem;
+}
+nav ul a{
+  letter-spacing: 1px;
 }
 .active{
   border-bottom: 2px solid white !important;
