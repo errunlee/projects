@@ -141,13 +141,13 @@ margin:0;
 }
 
 @media only screen and (max-width: 1020px) {
-  .movie-wrapper{
-    grid-template-columns: repeat(4,1fr);
-  }
+.singleMovie{
+ height:200px; 
+}
 }
 
 @media only screen and (max-width: 520px) {
-  .movie-wrapper{
-    grid-template-columns: repeat(2,1fr);
+  .singleMovie{
+    height:200px;
   }
 }

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Carousel.css'
-import {GrCaretPrevious,GrCaretNext} from 'react-icons/gr'
+import {IoIosArrowBack,IoIosArrowForward } from 'react-icons/io'
 import {BsInfoCircle} from 'react-icons/bs'
 import CaroSkeleton from './CaroSkeleton'
-import Carousel from 'react-multi-carousel'
 export default function HomeCarousel() {
   let [value, setValue] = useState(0)
   let [movies, setMovies] = useState([])
@@ -72,17 +71,18 @@ export default function HomeCarousel() {
         const imageUrl=poster_path?`https://image.tmdb.org/t/p/w200${poster_path}`:'https://picsum.photos/200/300'
        
         return <div  key={index} className={`${position}   shadow-lg container-xl box-item d-flex flex-column align-items-center p-4`}>
-            <div className='row justify-content-lg-between justify-content-center  align-items-center'>
-              <div className="col-md-4">
+            <div className='row justify-content-lg-between justify-content-center  align-items-center w-100'>
+              <div className="col-md-4 center">
               <img className='rounded' src={imageUrl}></img>
 
               </div>
 
-              <div className='col-md-8'>
-                <p className='display-2'>{original_title}</p>
-                <p className=''>{overview}</p>
-            <Link className='text-decoration-none' to={`/${id}`}>  <button className='btn btn-lg btn-secondary d-flex align-items-center'><BsInfoCircle/><span className='mx-1'>More Info</span></button></Link>
-                
+              <div className='col-md-8 center center-title mt-3 mt-lg-0'>
+                <p className='display-lg-2 display-4 fw-bold'>{original_title}</p>
+                <p className='d-lg-block d-none'>{overview}</p>
+            <Link className='text-decoration-none' to={`/${id}`}>  <button className='btn btn-sm d-lg-none btn-secondary d-flex align-items-center'><BsInfoCircle/><span className='mx-1'>More Info</span></button></Link>
+            <Link className='text-decoration-none' to={`/${id}`}>  <button className='btn btn-lg d-lg-block d-none btn-secondary d-flex align'><BsInfoCircle/><span className='mx-1'>More Info</span></button></Link>
+           
                 </div>
               </div>
         </div>
@@ -91,8 +91,8 @@ export default function HomeCarousel() {
       } 
       
       <div className="">
-        <button onClick={handlePreviousClick} className='btn bg-light border   border-dark previous text-light'> <GrCaretPrevious/></button>
-        <button onClick={handleNextClick} className='btn bg-light border border-dark next text-light '><GrCaretNext/></button>
+        <button onClick={handlePreviousClick} className='btn bg-none  border   border-dark previous text-light'> <IoIosArrowBack  color='white'/></button>
+        <button onClick={handleNextClick} className='btn bg-none border border-dark next text-light '><IoIosArrowForward color='white'/></button>
       </div>
     </div>
   )

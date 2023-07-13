@@ -57,12 +57,26 @@
     transform: translateX(100%);
     
   }
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 1020px) {
    .box{
      width:100%;
     }
-  }
   
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .center img{
+    height:250px !important;
+    width: auto !important;
+  }
+  .center-title {
+
+  }
   .carodiv{
 
   }
+}

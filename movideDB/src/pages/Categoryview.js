@@ -58,7 +58,7 @@ if(!movies){
     <div>
       <Navbar />
       <span className='badge bg-primary p-3 m-2 rounded-0'>Top results</span>
-      <div className='container overflow-hidden'>
+      <div className='container-md overflow-hidden'>
           <InfiniteScroll
             dataLength={movies.length}
             next={fetchNextPage}
@@ -74,7 +74,7 @@ if(!movies){
 
             {movies.length > 0 &&
               movies.map((movie,index) => (
-                <div key={index} className='col-md-2 col-4'>
+                <div key={index} className='col-lg-2 col-md-4 col-6'>
                   <SingleMovie movie={movie} />
                 </div>
               ))}

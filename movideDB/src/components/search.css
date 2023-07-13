@@ -13,3 +13,11 @@
     display: initial;
     padding: 8px;
 }
+
+
+@media screen and (max-width:1020px) {
+    .search-form{
+        position: absolute;
+        right:70px;
+    }
+}

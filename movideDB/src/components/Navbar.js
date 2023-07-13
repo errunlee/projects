@@ -5,7 +5,6 @@ import ManageUser from './manageUser/ManageUser'
 import './responsivenav.css'
 
 function Navbar() {
-  
 
     const handleHover=()=>{
       document.querySelectorAll('.links')[0].classList.add('showNav')
@@ -23,7 +22,7 @@ function Navbar() {
           </div>
 
           <div className='position-relative ' onMouseLeave={handleLeave}>
-            <button onMouseOver={handleHover} className='btn bg-none text-white browse-btn d-lg-none d-flex '>Browse</button>
+            <button onMouseOver={handleHover} className='btn bg-none text-white browse-btn d-lg-none d-flex browse'>Browse</button>
 
            <div className='links  '>
               <NavLink to='/' activeClassName="active" className='text-decoration-none text-light mx-2' >Home</NavLink>
