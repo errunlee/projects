@@ -6,7 +6,10 @@ import { useContext } from 'react';
 import { MovieContext } from '../context';
 
 function ActorBasedMovies() {
-    
+    const {fetchMovies,setLoading,loading,setList}=useContext(MovieContext)
+    useEffect(()=>{
+        const userIdUrl=``
+    },[])
   return (
     <div>
       <Navbar/>

@@ -17,7 +17,6 @@ function Search() {
     const handleLeave=()=>{
       document.querySelectorAll('.search-input')[0].classList.remove('showInput')
       inputRef.current.blur();
-
     }
     const handleSearch=(e)=>{
       e.preventDefault();

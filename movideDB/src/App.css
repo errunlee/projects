@@ -33,6 +33,14 @@ nav ul a{
 .view-link:hover{
   color:white
 }
+.favorite{
+  top:0;
+  right:4px;
+}
+.favorite svg{
+  height:25px;
+  width:25px;
+}
 .singleMovie{
   display: inline-grid;
   background:#1d1b1b;
@@ -141,13 +149,11 @@ margin:0;
 }
 
 @media only screen and (max-width: 1020px) {
-.singleMovie{
- height:200px; 
-}
+
 }
 
 @media only screen and (max-width: 520px) {
-  .singleMovie{
-    height:200px;
+  .row .col-6{
+    padding:0;
   }
 }

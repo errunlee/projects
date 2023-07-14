@@ -2,14 +2,23 @@ import React, { useContext, useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import Suggestions from '../components/Suggestions';
 import HomeCarousel from '../components/HomeCarousel';
-import CaroSkeleton from '../components/CaroSkeleton';
+import { MovieContext } from '../context';
+import Alert from '../components/manageUser/Alert';
 function Homepage() {
+  const {showAlert,setShowAlert,msg}=useContext(MovieContext)
   const popularUrl='https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c749165fc96671c286d19d7f046e41e5'
   
-
+  useEffect(()=>{
+    const ret=setTimeout(()=>{
+      setShowAlert(false)
+    },3000)
+    return (()=>clearTimeout(ret))
+  },[showAlert])
   return (
     <div>
       <Navbar/>
+      {showAlert &&  <Alert msg={msg}/>}
+
       <HomeCarousel/>
 
       <div className="container mt-3">

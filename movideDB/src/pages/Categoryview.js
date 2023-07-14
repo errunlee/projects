@@ -18,6 +18,7 @@ const Categoryview = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading,setLoading]=useState(true)
+
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=c749165fc96671c286d19d7f046e41e5&with_genres=${type}&page=${page}`;
 

@@ -9,6 +9,9 @@ import Suggestions from '../components/Suggestions';
 import Loading from '../components/Loader';
 import { FaYoutube,FaTimes } from 'react-icons/fa';
 
+import {AiOutlinePlusCircle } from 'react-icons/ai'
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '../firebase'
 function MovieDetail() {
   const {loading,setLoading}=useContext(MovieContext)
   const [trailerUrl, setTrailerUrl] = useState(null);
@@ -63,6 +66,7 @@ function MovieDetail() {
   }
   const { budget, genres, original_title, overview, poster_path, release_date, runtime ,production_countries,spoken_languages,status,revenue} = movie
   const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w200${poster_path}` : 'https://picsum.photos/200/300'
+  document.title=original_title+" | LeeCinemas"
   if(loading){
     return (
       <>
@@ -71,10 +75,27 @@ function MovieDetail() {
       </>
     )
   }
+
+  const handleAdd=()=>{
+    const colref=collection(db,'test')
+    const payload={
+      name:'arun'
+    }
+    try{
+      addDoc(colref,payload)
+
+    }
+    catch{
+      console.log('err adding')
+    }
+  }
+
+
   return (
     <div>
       <Navbar />
       {movie && <div className='movie-detail container  my-3 p-3'>
+      <div onClick={handleAdd} className=' favorite bg-dark rounded-circle'><AiOutlinePlusCircle  height={75} width={75} fill='#fff'/></div>
           <div className="poster">
             <img src={imageUrl} />
           </div>
