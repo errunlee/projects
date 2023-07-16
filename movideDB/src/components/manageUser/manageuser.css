@@ -14,3 +14,7 @@
     line-height: 40px;
     letter-spacing: 1.3px;
 }
+
+.user-profile p:hover:not(:first-child),a:hover{
+    background:#121211;
+}

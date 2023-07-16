@@ -12,3 +12,22 @@
 .character{
     font-size:0.9rem
 }
+.favorite{
+    right:10px;
+    top:10px;
+  }
+  .favorite svg:hover{
+    transform: scale(1.5);
+    transition: 0.5s transform;
+    cursor: pointer;
+  
+  }
+  .favtext{
+    opacity: 0;
+    transform: translateX(25px);
+    transition: 0.5s all;
+  }
+  .show{
+    opacity: 1;
+    transform: translate(0);
+  }

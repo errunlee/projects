@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useRef} from 'react'
 import './MovieDetail.css'
 import { useParams } from 'react-router-dom'
 import { useContext } from 'react';
@@ -8,14 +8,11 @@ import Cast from '../components/Cast';
 import Suggestions from '../components/Suggestions';
 import Loading from '../components/Loader';
 import { FaYoutube,FaTimes } from 'react-icons/fa';
-
-import {AiOutlinePlusCircle } from 'react-icons/ai'
-import { addDoc, collection } from 'firebase/firestore'
-import { db } from '../firebase'
+import {AiOutlineDingding, AiOutlinePlusCircle } from 'react-icons/ai'
+import Addtofav from '../components/manageUser/Addtofav';
 function MovieDetail() {
-  const {loading,setLoading}=useContext(MovieContext)
+  const {loading,setLoading,currentUser}=useContext(MovieContext)
   const [trailerUrl, setTrailerUrl] = useState(null);
-
   const { id } = useParams();
   const [movie, setMovie] = useState('')
   const [cast, setCast] = useState('')
@@ -76,26 +73,17 @@ function MovieDetail() {
     )
   }
 
-  const handleAdd=()=>{
-    const colref=collection(db,'test')
-    const payload={
-      name:'arun'
-    }
-    try{
-      addDoc(colref,payload)
-
-    }
-    catch{
-      console.log('err adding')
-    }
-  }
-
+ 
 
   return (
     <div>
       <Navbar />
-      {movie && <div className='movie-detail container  my-3 p-3'>
-      <div onClick={handleAdd} className=' favorite bg-dark rounded-circle'><AiOutlinePlusCircle  height={75} width={75} fill='#fff'/></div>
+      {movie && <div className='movie-detail container  my-3 p-3 position-relative'>
+        
+      <div className='favorite position-absolute p-2'>
+<Addtofav id={id} original_title={original_title} poster_path={poster_path} currentUser={currentUser}/>
+        </div>
+
           <div className="poster">
             <img src={imageUrl} />
           </div>

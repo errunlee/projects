@@ -7,6 +7,8 @@ import Searchresults from './pages/Searchresults';
 import Categoryview from './pages/Categoryview';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
+import MyList from './pages/MyList';
+import Protectedroute from './components/Protectedroute';
 function App() {
   return (
     <>
@@ -18,6 +20,7 @@ function App() {
       <Route exact path='/category/:type' element={<Categoryview/>}/>
       <Route exact path='/login' element={<Login/>}/>
       <Route exact path='/signup' element={<Signup/>}/>
+      <Route exact path='/mylist' element={<Protectedroute><MyList/></Protectedroute>}/>
       </Routes>
     </Router>
     </>
