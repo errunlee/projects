@@ -2,7 +2,7 @@ import React from 'react'
 import '../pages/MovieDetail'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import './cast.css'
 
 function Cast({ cast }) {
   return (
@@ -17,12 +17,10 @@ function Cast({ cast }) {
 
               <LazyLoadImage
                 alt={'cast-avatar'}
-                height={200}
                 src={imageUrl} // use normal <img> attributes as props
-                width={120}
+                height={110}
+                width={100}
                 effect="blur" />
-
-
               <div className="d-flex flex-column align-items-center">
                 <p className='lead m-0'>{original_name}</p>
                 <p className='m-0 text-secondary character'>{character}</p>

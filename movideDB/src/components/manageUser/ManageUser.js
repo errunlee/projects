@@ -27,7 +27,7 @@ function ManageUser() {
           <p className='m-0 border-bottom text-warning lead fw-bold'>{currentUser.displayName}</p>
           <p className='m-0'><Link to='/profile' className='m-0 border-bottom text-decoration-none text-light'>My Profile</Link></p>
           <p className='m-0'><Link to='/mylist' className='m-0 border-bottom text-decoration-none text-light'>My List</Link></p>
-          <p className='m-0 btn bg-none text-light border-0  border-bottom rounded-0 p-0 ' onClick={logout}>Logout</p>
+          <p className='m-0  bg-none text-light border-0  border-bottom rounded-0 p-0 ' onClick={logout}>Logout</p>
           
           </div>
         }

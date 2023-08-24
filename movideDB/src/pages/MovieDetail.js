@@ -24,6 +24,7 @@ function MovieDetail() {
     setLoading(false)
   }
   const getCast=async()=>{
+    setCast([])
     const res=await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=c749165fc96671c286d19d7f046e41e5`)
     const data=await res.json();
     setCast(data.cast.slice(0,5))
