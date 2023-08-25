@@ -14,11 +14,11 @@ function ManageUser() {
     setShowOpt(!showOpt)
   }
 
-  
+  const avatarImg=currentUser?.photoUrl?currentUser.photoUrl:'https://t4.ftcdn.net/jpg/03/31/69/91/360_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
   return (
     <div className=" ">
-      <div className='user-profile mx-3 position-relative btn btn-light ' onClick={handleClick}>
-      {showOpt && <div className="position-absolute profile-options border   bg-dark text-light">
+      <div className='user-profile mx-3 position-relative btn btn-light ' style={{backgroundImage:`url(${avatarImg})`}} onClick={handleClick}>
+      {showOpt && <div className="position-absolute profile-options border   bg-primary text-light">
         {!currentUser?<div>
         <Link className='text-decoration-none text-light' to='/login'> <p className=' border-bottom  m-0'>Login</p></Link>
        <Link className='text-decoration-none text-light' to='/login'> <p className=' border-bottom  m-0'>Signup</p></Link>

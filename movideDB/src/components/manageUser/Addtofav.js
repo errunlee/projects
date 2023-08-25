@@ -28,9 +28,11 @@ export default function Addtofav({ id, original_title, poster_path, currentUser 
       })
       const isInFav = userListIds.includes(id)
       setInFavorite(isInFav);
+      console.log("console "+isInFav+" state "+inFavorite)
+      setText(!inFavorite ? 'Add to favorite' : 'Remove from favorite')
     });
     return (() => { unsubscribe() })
-  }, [])
+  }, [currentUser,id])
 
   useEffect(() => {
     setText(!inFavorite ? 'Add to favorite' : 'Remove from favorite')

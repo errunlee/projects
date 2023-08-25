@@ -3,9 +3,11 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // auth
-import { getAuth} from "firebase/auth";
+import { getAuth, updateProfile} from "firebase/auth";
 // db
 import { getFirestore } from "firebase/firestore";
+// storage
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 
 const firebaseConfig = {
@@ -32,6 +34,24 @@ const auth = getAuth(app);
 // db
 const db = getFirestore(app);
 
+// storage cloud
+const storage = getStorage(app);
 
-export {auth,db};
 
+export {auth,db,storage};
+
+
+// custom hook
+
+const upload=async (file,currentUser,setLoading,setImageUrl)=>{
+  const fileRef=ref(storage,currentUser.uid+'.png')
+  setLoading(true)
+  const snapshot=await uploadBytes(fileRef,file)
+  const photoURL=await getDownloadURL(fileRef)
+  updateProfile(currentUser,{photoURL})
+  setImageUrl(photoURL)
+  console.log(currentUser.photoURL)
+  setLoading(false)
+  alert('upload success')
+}
+export {upload}
