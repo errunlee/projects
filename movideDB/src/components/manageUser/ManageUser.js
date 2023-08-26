@@ -15,9 +15,9 @@ function ManageUser() {
   }
 
   useEffect(()=>{
-    const avatarImg=currentUser?.photoURL?currentUser.photoURL:'https://t4.ftcdn.net/jpg/03/31/69/91/360_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
+    const avatarImg=currentUser?.photoURL?currentUser?.photoURL:'https://t4.ftcdn.net/jpg/03/31/69/91/360_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
     setAvatar(avatarImg)
-  },[currentUser,currentUser.photoURL])
+  },[currentUser,currentUser?.photoURL])
 
   return (
     <div className=" ">
