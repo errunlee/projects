@@ -1,6 +1,6 @@
 
 
-import React, { useState,useContext } from 'react'
+import React, { useState,useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './manageuser.css'
 import { MovieContext } from '../../context'
@@ -9,15 +9,19 @@ import UserList from './UserList'
 function ManageUser() {
   const [showOpt, setShowOpt] = useState(false)
   const {currentUser,logout}=useContext(MovieContext)
-
+  const [avatar,setAvatar]=useState(null)
   const handleClick = () => {
     setShowOpt(!showOpt)
   }
 
-  const avatarImg=currentUser?.photoUrl?currentUser.photoUrl:'https://t4.ftcdn.net/jpg/03/31/69/91/360_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
+  useEffect(()=>{
+    const avatarImg=currentUser?.photoURL?currentUser.photoURL:'https://t4.ftcdn.net/jpg/03/31/69/91/360_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'
+    setAvatar(avatarImg)
+  },[currentUser,currentUser.photoURL])
+
   return (
     <div className=" ">
-      <div className='user-profile mx-3 position-relative btn btn-light ' style={{backgroundImage:`url(${avatarImg})`}} onClick={handleClick}>
+      <div className='user-profile mx-3 position-relative btn btn-light ' style={{backgroundImage:`url(${avatar})`}} onClick={handleClick}>
       {showOpt && <div className="position-absolute profile-options border   bg-primary text-light">
         {!currentUser?<div>
         <Link className='text-decoration-none text-light' to='/login'> <p className=' border-bottom  m-0'>Login</p></Link>

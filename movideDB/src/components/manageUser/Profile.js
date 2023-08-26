@@ -3,28 +3,58 @@ import { MovieContext } from '../../context'
 import Navbar from '../Navbar'
 import './profile.css'
 import React, { useContext, useEffect, useState } from 'react'
-import { upload } from '../../firebase'
+import { auth, upload } from '../../firebase'
+import { updateEmail, updateProfile } from 'firebase/auth'
+import Modal from '../Modal'
 function Profile() {
     const { currentUser } = useContext(MovieContext)
     const [photo,setPhoto]=useState(null)
+    const [email,setEmail]=useState(currentUser?.email)
     const [imageUrl,setImageUrl]=useState(currentUser?.photoURL)
     const [loading,setLoading]=useState(false)
+    const [displayName,setDisplayName]=useState(currentUser?.displayName)
+
+    const handleChange= (e)=>{
+        if(e.target.files[0]){
+            setPhoto(e.target.files[0])
+        }
+        
+    }
+  
+    const handleUpload=async ()=>{
+        await upload(photo,currentUser,setLoading,setImageUrl)
+        document.querySelector("#modal").close();
+    }
+
+    const openmodal=()=>{
+        document.querySelector("#modal").showModal();
+    }
     if (!currentUser) {
         return;
     }
 
-
-    const handleChange=(e)=>{
-        if(e.target.files[0]){
-            setPhoto(e.target.files[0])
-        }
+  
+   const handleEdit=async(param)=>{
+    const value=prompt("enter the value for ")
+    const payload={
+        [param]:value
     }
-    const handleSubmit=()=>{
-        upload(photo,currentUser,setLoading,setImageUrl)
+    try{
+        await updateProfile(currentUser,payload)
+        setDisplayName(value)
+        alert('updated ',param)
     }
-    console.log(currentUser)
+    catch(err){
+        alert('error changing name')
+    }
+   }
 
-   
+   const handleEditEmail=async ()=>{
+    const newEmail=prompt("new email")
+    await updateEmail(auth.currentUser,newEmail)
+    setEmail(newEmail)
+   }
+
     return (
         <>
             <Navbar />
@@ -32,7 +62,7 @@ function Profile() {
                 <div className='avatar-img'>
                     <img src={imageUrl?imageUrl:'https://t4.ftcdn.net/jpg/03/31/69/91/360_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg'}></img>
                 </div>
-                <h1>Welcome, Arun Khatri!</h1>
+                <h1>Welcome, <span className='text-capitalize fw-bolder'>{displayName}</span> </h1>
                 <h5 className="text-secondary">Manage your account details here.</h5>
                 <div className="personal-info d-flex flex-column justify-content-center align-items-center mt-3 ">
                     <h1>Personal Info</h1>
@@ -47,32 +77,43 @@ function Profile() {
                                 A picture helps people recognize you and lets you know when you’re signed in to your account
                             </div>
                             < div className="col-2 text-primary text-decoration-underline fw-bold">
-                                <input type='file' onChange={handleChange}/>
-                                <button onClick={handleSubmit} disabled={loading || !photo}>Update</button>
+                            <button className='btn btn-secondary' onClick={openmodal}>Update</button>
                             </div> 
+                            <Modal loading={loading}>
+                            <div className='d-flex flex-column'>
+                            <label className='fw-bold'>Choose a new photo to update Avatar</label>
+                                <input
+                                    type="file"
+                                    id="profilePicture"
+                                    accept="image/*"
+                                    onChange={handleChange}/>
+
+                            <button className='btn btn-primary btn-lg' disabled={loading || !photo} onClick={handleUpload}>{loading?'Updating profile':"Update"}</button>
+</div>
+                            </Modal>
                         </div>
                         <hr className='m-0' />
                         <div className="row profile-row">
                             <div className="col-3">
                                 Name
                             </div>
-                            <div className="col-7">
-                                {currentUser.displayName}
+                            <div className="col-7 text-capitalize">
+                                {displayName}
                             </div>
-                            < div className="col-2 text-primary text-decoration-underline fw-bold">
+                            < div onClick={()=>{handleEdit('displayName')}} className="col-2 text-primary text-decoration-underline fw-bold">
                                 Edit
                             </div>
                         </div>
                         <hr className='m-0' />
                         <div className="row profile-row ">
                             <div className="col-3">
-                                Username
+                                UID
                             </div>
                             <div className="col-7">
-                                {currentUser.username}
+                                {currentUser.uid}
                             </div>
-                            < div className="col-2 text-primary text-decoration-underline fw-bold">
-                                Edit
+                            < div className="col-2 text-warning  fw-bold">
+                                UID can't be changed
                             </div>
                         </div>
                         <hr className='m-0' />
@@ -82,9 +123,9 @@ function Profile() {
                                 Email
                             </div>
                             <div className="col-7">
-                                {currentUser.email}
+                                {email}
                             </div>
-                            < div className="col-2 text-primary text-decoration-underline fw-bold">
+                            < div onClick={handleEditEmail} className="col-2 text-primary text-decoration-underline fw-bold">
                                 Edit
                             </div>
                         </div>
