@@ -28,3 +28,7 @@
     opacity: 1;
     transform: translate(0);
   }
+  .modalTrailer{
+    width: 800px !important;
+    height: 500px !important; 
+  }

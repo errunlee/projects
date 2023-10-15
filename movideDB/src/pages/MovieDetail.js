@@ -126,8 +126,8 @@ function MovieDetail() {
             <Cast cast={cast} setCast={setCast}/>
           </div>
           <div className="d-flex">
-          <dialog id='modal'>
-          {trailerUrl?<iframe className='bg-dark' width="560" height="315" src={`https://www.youtube.com/embed/${trailerUrl.key}?autoplay=1`} frameborder="0" allowfullscreen></iframe>:<p>No videos available.:/</p>}
+          <dialog className='modalTrailer' id='modal'>
+          {trailerUrl?<iframe className='bg-dark' width="100%" height="100%" src={`https://www.youtube.com/embed/${trailerUrl.key}?autoplay=1`} frameborder="0" allowfullscreen></iframe>:<p>No videos available.:/</p>}
         <button className='btn btn-secondary' onClick={handleClose}><FaTimes/></button>
           </dialog>
           </div>
