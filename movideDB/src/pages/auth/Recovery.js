@@ -1,6 +1,8 @@
+
+
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '../../firebase'
 import { MovieContext } from '../../context'
 import img from './load.gif' //this is loader image
@@ -8,8 +10,7 @@ import img from './load.gif' //this is loader image
 export default function Login() {
     const [email, setEmail] = useState('')
   const [loading,setLoading]=useState(false)
-    const [password, setPassword] = useState('')
-    const {currentUser,showAlert,setShowAlert,msg,setMsg}=useContext(MovieContext)
+    const {currentUser}=useContext(MovieContext)
     const navigate=useNavigate();
     const [error,setError]=useState(false)
     const [errMsg,setErrMsg]=useState('')
@@ -18,15 +19,15 @@ export default function Login() {
         setError(false)
         setLoading(true)
         try {
-            await signInWithEmailAndPassword(auth, email, password)
-            navigate('/')
-            setMsg('Logged in Successfully ')
-            setShowAlert(true);
+            await sendPasswordResetEmail(auth,email)
+            alert("Passwrod reset email sent successfully")
             setError(false)
+            navigate('/login')
 
         } catch (error) {
             setError(true)
             setErrMsg((error.message).slice(9))
+            
         }
         setLoading(false)
     }
@@ -34,22 +35,18 @@ export default function Login() {
     if(currentUser){
         navigate('/')
     }
+  document.title="Forgot Password | LeeCinemas"
 
-  document.title="Login | LeeCinemas"
 
     return (
         <div className='d-flex justify-content-center flex-column align-items-center'>
             <h1>Login</h1>
-            <form onSubmit={submitForm} className='d-flex flex-column justify-content-center border p-3' style={{ width: '350px' }}>
+            <form onSubmit={submitForm} className='d-flex flex-column justify-content-center border p-3' style={{ width: '350px'}}>
                 <label htmlFor='email'>Email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} className='p-2' type='text'></input>
                 <br></br>
-                <label htmlFor='password'>Password</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} className='p-2' type='password' autoComplete="current-password"></input>
-                <br></br>
               { error && <p className='text-danger fw-bold'>{errMsg}</p>}
-                <button className='btn  btn-dark'>{!loading?'Login':<img src={img}/>}</button>
-                <Link to='/recovery' className='text-decoration-underline  text-white'><p className='text-center'>Forgot password?</p></Link>
+                <button className='btn  btn-dark'>{!loading?'Send reset Email':<img src={img}/>}</button>
             </form>
             <p>No Account?<Link className='text-decoration-none text-primary' to='/signup'> Sign Up</Link></p>
 

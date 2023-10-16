@@ -4,7 +4,10 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 import React from 'react'
 
-function Skeletoncomp() {
+function Skeletoncomp({nodata}) {
+  if(!nodata){
+    return;
+  }
   return (
      <>
      <div className='mx-1'>

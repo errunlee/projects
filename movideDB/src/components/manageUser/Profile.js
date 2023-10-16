@@ -5,6 +5,7 @@ import './profile.css'
 import React, { useContext, useEffect, useState } from 'react'
 import { auth, upload } from '../../firebase'
 import { updateEmail, updateProfile } from 'firebase/auth'
+import { sendEmailVerification } from 'firebase/auth'
 import Modal from '../Modal'
 function Profile() {
     const { currentUser } = useContext(MovieContext)
@@ -13,7 +14,7 @@ function Profile() {
     const [imageUrl,setImageUrl]=useState(currentUser?.photoURL)
     const [loading,setLoading]=useState(false)
     const [displayName,setDisplayName]=useState(currentUser?.displayName)
-
+    const [sendingEmail,setSendingEmail]=useState(false)
     const handleChange= (e)=>{
         if(e.target.files[0]){
             setPhoto(e.target.files[0])
@@ -55,6 +56,13 @@ function Profile() {
     setEmail(newEmail)
    }
 
+//    send email verfication
+const verifyEmail=async()=>{
+    setSendingEmail(true)
+    await sendEmailVerification(auth.currentUser)
+    alert('Email sent Successfully')
+    setSendingEmail(false)
+}
     return (
         <>
             <Navbar />
@@ -77,7 +85,7 @@ function Profile() {
                                 A picture helps people recognize you and lets you know when you’re signed in to your account
                             </div>
                             < div className="col-2 text-primary text-decoration-underline fw-bold">
-                            <button className='btn btn-secondary' onClick={openmodal}>Update</button>
+                            <button className='btn btn-secondary p-2' onClick={openmodal}>Update</button>
                             </div> 
                             <Modal loading={loading}>
                             <div className='d-flex flex-column'>
@@ -88,7 +96,7 @@ function Profile() {
                                     accept="image/*"
                                     onChange={handleChange}/>
 
-                            <button className='btn btn-primary btn-lg' disabled={loading || !photo} onClick={handleUpload}>{loading?'Updating profile':"Update"}</button>
+                            <button className='btn btn-primary btn-lg p-2' disabled={loading || !photo} onClick={handleUpload}>{loading?'Updating profile':"Update"}</button>
 </div>
                             </Modal>
                         </div>
@@ -123,7 +131,7 @@ function Profile() {
                                 Email
                             </div>
                             <div className="col-7">
-                                {email}
+                                {email}{currentUser.emailVerified?' (Verified)':<><span>(Not verified)</span><button onClick={verifyEmail}className='btn btn-sm p-1 btn-danger'>{sendingEmail?'Sending email':'Verify Now'}</button></>}
                             </div>
                             < div onClick={handleEditEmail} className="col-2 text-primary text-decoration-underline fw-bold">
                                 Edit

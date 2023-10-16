@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SingleMovie from '../components/SingleMovie';
 import Navbar from '../components/Navbar';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { MovieContext } from '../context';
 
 const Loading=()=>{
   return (
@@ -18,6 +19,19 @@ const Categoryview = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading,setLoading]=useState(true)
+  const {genresList}=useContext(MovieContext)
+  const [genre,setGenre]=useState(null)
+
+  useEffect(()=>{
+    if(!genresList){
+      return;
+    }
+    const selectedGenre=genresList.filter((item)=>{
+      return item.id==type
+    })
+    console.log(selectedGenre)
+    setGenre(selectedGenre[0].name)
+  },[genresList,type])
 
   useEffect(() => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=c749165fc96671c286d19d7f046e41e5&with_genres=${type}&page=${page}`;
@@ -58,8 +72,9 @@ if(!movies){
   return (
     <div>
       <Navbar />
-      <span className='badge bg-primary p-3 m-2 rounded-0'>Top results</span>
-      <div className='container-md overflow-hidden'>
+      <div className=' container-fluid-xl container-md overflow-hidden'>
+      <span className='badge bg-secondary lead p-3 m-2 rounded-0 fw-lighter'>Top results for <span className='fw-bolder text-warning h6 m-0'>{genre}</span></span>
+        
           <InfiniteScroll
             dataLength={movies.length}
             next={fetchNextPage}
@@ -75,7 +90,7 @@ if(!movies){
 
             {movies.length > 0 &&
               movies.map((movie,index) => (
-                <div key={index} className='col-lg-2 col-md-4 col-6'>
+                <div key={index} className='col-lg-2 col-md-3 col-4'>
                   <SingleMovie movie={movie} />
                 </div>
               ))}

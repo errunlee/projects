@@ -3,10 +3,13 @@
 import {Link, useNavigate} from 'react-router-dom'
 import { useState,useRef,useContext } from 'react'
 import { auth } from '../../firebase'
-import {  createUserWithEmailAndPassword,updateProfile  } from "firebase/auth";
+import {  createUserWithEmailAndPassword,updateProfile ,sendEmailVerification } from "firebase/auth";
 import { MovieContext } from '../../context';
+
 import img from './load.gif'
 export default function Signup(){
+  document.title="Sign Up | LeeCinemas"
+  
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const [error,setError]=useState(false)
@@ -26,8 +29,9 @@ export default function Signup(){
                 displayName:usernameRef.current.value
               })
         }
+        await sendEmailVerification(auth.currentUser)
         navigate('/');
-        setMsg('Account created and logged in successfully')
+        setMsg('Verification Email Sent.')
         setShowAlert(true);
         setError(false)
 
@@ -44,7 +48,7 @@ export default function Signup(){
   return(
     <div className='d-flex justify-content-center flex-column align-items-center'>
     <h1>Signup</h1>
-    <form onSubmit={submitForm} className='d-flex flex-column justify-content-center border p-3' style={{maxWidth:'500px'}}>
+    <form onSubmit={submitForm} className='d-flex flex-column justify-content-center border p-3' style={{width:'350px'}}>
         <label>Username</label>
       <input className='p-2' required ref={usernameRef}/>
         <label htmlFor='email'>Email</label>

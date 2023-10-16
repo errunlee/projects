@@ -31,4 +31,19 @@
   .modalTrailer{
     width: 800px !important;
     height: 500px !important; 
+    top:20% !important;
+    left: 20% !important;
   }
+
+
+@media only screen and (max-width: 1020px) {
+
+  .modalTrailer{
+    width: 80vw !important;
+    height: 300px !important; 
+    top:10% !important;
+    left: 15% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+}

@@ -10,6 +10,7 @@ import Signup from './pages/auth/Signup';
 import MyList from './pages/MyList';
 import Protectedroute from './components/Protectedroute';
 import Profile from './components/manageUser/Profile';
+import Recovery from './pages/auth/Recovery'
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
       <Route exact path='/signup' element={<Signup/>}/>
       <Route exact path='/mylist' element={<Protectedroute><MyList/></Protectedroute>}/>
       <Route exact path='/profile' element={<Protectedroute><Profile/></Protectedroute>}/>
+      <Route exact path='/recovery' element={<Recovery/>}/>
       </Routes>
     </Router>
     </>

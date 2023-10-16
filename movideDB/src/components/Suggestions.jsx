@@ -9,38 +9,45 @@ import Skeleton from 'react-loading-skeleton';
 
 
 
-function Suggestions({url}) {
-  const [suggest,setSuggest]=useState('')
-  const request=async(suggestUrl)=>{
-      const res=await fetch(suggestUrl)
-      const data=await res.json();
-      setSuggest(data.results)
-  }  
+function Suggestions({ url }) {
+  const [suggest, setSuggest] = useState('')
+  const [nodata, setNodata] = useState(false)
+  const request = async (suggestUrl) => {
+    const res = await fetch(suggestUrl)
+    const data = await res.json();
+    setSuggest(data.results)
+    if (data.length < 1) {
+      setNodata(true)
+    }
+    else {
+      setNodata(false)
+    }
+  }
 
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     request(url);
-  },[url])
+  }, [url])
 
-  
+
   return (
     <div className='my-2'>
-      <div className="suggestions movie-wrapper"  id="movie-grid-container">
-      <Slider>
-      {suggest.length>0?
+      <div className="suggestions movie-wrapper" id="movie-grid-container">
+        <Slider>
+          {suggest.length > 0 ?
 
-        suggest.map((movie)=>{
-            return <SingleMovie key={movie.id} movie={movie}/>
-        })
-        :
-        Array(7).fill(0).map((item,i)=>{
-          return <Skeletoncomp key={i}/>
-      })
-      }
-</Slider>     
+            suggest.map((movie) => {
+              return <SingleMovie key={movie.id} movie={movie} />
+            })
+            :
+            Array(7).fill(0).map((item, i) => {
+              return <Skeletoncomp nodata={nodata}key={i} />
+            })
+          }
+        </Slider>
       </div>
     </div>
-    
+
   )
 }
 
