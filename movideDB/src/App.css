@@ -48,19 +48,13 @@ nav ul a{
   background-color: rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
-  transform: translateY(110%);
 }
 
 
 .singleMovie:hover{
   background-color: rgba(0, 0, 0, 0.6);
   border:4px solid rgb(196, 57, 196);
-  cursor: pointer;
-  /* transition: .3s border; */
-}
-.singleMovie:hover .title{
-  transform: translateY(0);
-  transition: .5s all;
+  cursor: pointer; 
 }
 .overlay {
   position: absolute;
@@ -154,6 +148,7 @@ margin:0;
 }
 
 @media only screen and (max-width: 1020px) {
+
 .movie-detail{
   grid-template-columns: 1fr;
 }
@@ -175,6 +170,9 @@ margin:0;
   height: 170px;
   max-height: 170px;
   min-height: 170px;
+}
+.singleMovie .title{
+  display: none;
 }
 }
 

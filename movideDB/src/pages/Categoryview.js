@@ -90,7 +90,7 @@ if(!movies){
 
             {movies.length > 0 &&
               movies.map((movie,index) => (
-                <div key={index} className='col-lg-2 col-md-3 col-4'>
+                <div key={index} className='col-lg-2 col-md-2 col-4'>
                   <SingleMovie movie={movie} />
                 </div>
               ))}
