@@ -39,7 +39,7 @@ nav ul a{
   display: inline-grid;
   background:#1d1b1b;
   height: 200px;
-  background-size: cover;
+  background-size: contain;
   background-repeat:no-repeat;
   overflow: hidden;
 }
@@ -168,6 +168,9 @@ margin:0;
 .row > *{
   padding:0 !important;
 
+}
+.singleMovie{
+  height: 170px;
 }
 }
 
