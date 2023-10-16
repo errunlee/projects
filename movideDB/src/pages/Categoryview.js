@@ -86,7 +86,7 @@ if(!movies){
               </p>
             }
           >
-        <div className='row'>
+        <div className='row' style={{width:'100%',margin:'auto'}}>
 
             {movies.length > 0 &&
               movies.map((movie,index) => (

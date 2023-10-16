@@ -37,11 +37,12 @@ nav ul a{
 
 .singleMovie{
   display: inline-grid;
-  background:#1d1b1b;
-  height: 200px;
+  /* background:#1d1b1b; */
   background-size: contain;
   background-repeat:no-repeat;
   overflow: hidden;
+  max-height: 250px;
+  min-height: 250px;
 }
 .singleMovie .title{
   background-color: rgba(0, 0, 0, 0.5);
@@ -71,6 +72,7 @@ nav ul a{
   transition: opacity 0.3s ease;
   background-color: rgba(0, 0, 0, 0.7);
 }
+
 
 .singleMovie:hover .overlay{
   opacity: 1;
@@ -171,6 +173,8 @@ margin:0;
 }
 .singleMovie{
   height: 170px;
+  max-height: 170px;
+  min-height: 170px;
 }
 }
 

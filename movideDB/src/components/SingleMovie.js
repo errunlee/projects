@@ -15,7 +15,7 @@ function SingleMovie({movie}) {
 
     
   return (
-   <Link onClick={handleClick} className='view-link text-decoration-none' to={`/${id}`}> <div className='singleMovie shadow m-2 rounded d-flex align-items-end  position-relative ' style={{backgroundImage:`url(${imageUrl})`}}>
+   <Link onClick={handleClick} className='view-link text-decoration-none' to={`/${id}`}> <div className='singleMovie  mx-2 rounded d-flex align-items-end  position-relative my-2' style={{backgroundImage:`url(${imageUrl})`}}>
       <div className="title p-2 w-100 rounded">
       <p className='text-center text-shadow-lg m-0 '>{movie.original_title}</p>
       </div>
