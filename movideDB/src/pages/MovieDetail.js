@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 import Cast from '../components/Cast';
 import Suggestions from '../components/Suggestions';
 import Loading from '../components/Loader';
-import { FaYoutube, FaTimes } from 'react-icons/fa';
+import { FaYoutube, FaTimes, FaVideo } from 'react-icons/fa';
 import Addtofav from '../components/manageUser/Addtofav';
 import { Link } from 'react-router-dom';
 function MovieDetail() {
@@ -92,7 +92,7 @@ function MovieDetail() {
         </div>
 
         <div className="poster">
-          <img src={imageUrl} />
+          <img className="object-cover object-center" src={imageUrl} />
         </div>
         <div className="movieInfos ">
           <h2 className='text-lg-start text-center'>{original_title}</h2>
@@ -125,8 +125,16 @@ function MovieDetail() {
             </div>
           </div>
           <p className='my-2 fw-lighter text-info font-italic' style={{ fontStyle: 'italic' }}>{overview}</p>
-          <div className=''><p onClick={showModal} className='btn btn-secondary d-inline-block shadow-lg p-2'><span className='mx-2 '><FaYoutube size={32} color='red' /></span>Watch trailer</p>
+          <div className="d-flex gap-2">
+            <div className=''>
+              <p onClick={showModal} className='btn btn-secondary d-inline-block shadow-lg p-2'><span className='mx-2 '><FaYoutube size={32} color='red' />
+              </span>Watch trailer</p>
 
+            </div>
+
+            <div className=''><Link to={`/watch/${id}`} className='btn btn-secondary d-inline-block shadow-lg p-2'><span className='mx-2 '><FaVideo size={32} color='blue' /></span>Watch Now</Link>
+
+            </div>
           </div>
           <span className='badge bg-info text-white my-2'>Top Cast</span>
           <Cast cast={cast} setCast={setCast} />

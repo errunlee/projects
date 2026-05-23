@@ -11,22 +11,24 @@ import MyList from './pages/MyList';
 import Protectedroute from './components/Protectedroute';
 import Profile from './components/manageUser/Profile';
 import Recovery from './pages/auth/Recovery'
+import WatchMovie from './pages/WatchMovie';
 function App() {
   return (
     <>
-    <Router>
-      <Routes>
-      <Route exact path='/' element={<Homepage/>}/>
-      <Route exact path='/:id' element={<MovieDetail/>}/>
-      <Route exact path='/search/:query' element={<Searchresults/>}/>
-      <Route exact path='/category/:type' element={<Categoryview/>}/>
-      <Route exact path='/login' element={<Login/>}/>
-      <Route exact path='/signup' element={<Signup/>}/>
-      <Route exact path='/mylist' element={<Protectedroute><MyList/></Protectedroute>}/>
-      <Route exact path='/profile' element={<Protectedroute><Profile/></Protectedroute>}/>
-      <Route exact path='/recovery' element={<Recovery/>}/>
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={<Homepage />} />
+          <Route exact path='/:id' element={<MovieDetail />} />
+          <Route exact path='/search/:query' element={<Searchresults />} />
+          <Route exact path='/category/:type' element={<Categoryview />} />
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/signup' element={<Signup />} />
+          <Route exact path='/mylist' element={<Protectedroute><MyList /></Protectedroute>} />
+          <Route exact path='/profile' element={<Protectedroute><Profile /></Protectedroute>} />
+          <Route exact path='/recovery' element={<Recovery />} />
+          <Route exact path='/watch/:id' element={<WatchMovie />} />
+        </Routes>
+      </Router>
     </>
   );
 }
